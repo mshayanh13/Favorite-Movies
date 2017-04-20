@@ -79,8 +79,14 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFe
     
     func attemptFetch() {
         let fetchRequest: NSFetchRequest<Movie> = Movie.fetchRequest()
-        let dateSort = NSSortDescriptor(key: "lastUpdated", ascending: true)
-        fetchRequest.sortDescriptors = [dateSort]
+        let dateSort = NSSortDescriptor(key: "lastUpdated", ascending: false)
+        let titleSort = NSSortDescriptor(key: "title", ascending: true)
+        
+        if segment.selectedSegmentIndex == 0 {
+            fetchRequest.sortDescriptors = [dateSort]
+        } else {
+            fetchRequest.sortDescriptors = [titleSort]
+        }
         
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         controller.delegate = self
@@ -92,6 +98,11 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFe
             let error = error as NSError
             print(error.debugDescription)
         }
+    }
+    
+    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
+        attemptFetch()
+        tableView.reloadData()
     }
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {

@@ -46,7 +46,7 @@ class DetailsVC: UIViewController, UITextFieldDelegate, UIImagePickerControllerD
         
         var movie: Movie!
         
-        if let title = titleTextField.text, let details = descriptionTextField.text, let link = urlTextField.text, movieImage.image != defaultImage {
+        if let title = titleTextField.text, let details = descriptionTextField.text, var link = urlTextField.text, movieImage.image != defaultImage {
             
             if movieToEdit == nil {
                 movie = Movie(context: context)
@@ -54,7 +54,11 @@ class DetailsVC: UIViewController, UITextFieldDelegate, UIImagePickerControllerD
                 movie = movieToEdit
             }
         
-            movie.title = title
+            if !(link.hasPrefix("http://") || link.hasPrefix("https://")) {
+                link = "http://\(link)"
+            }
+            
+            movie.title = title.capitalized
             movie.details = details
             movie.link = link
             movie.lastUpdated = NSDate()
@@ -91,6 +95,8 @@ class DetailsVC: UIViewController, UITextFieldDelegate, UIImagePickerControllerD
             descriptionTextField.text = movie.details
             urlTextField.text = movie.link
             movieImage.image = movie.toImage?.image as? UIImage
+            
+            webView.loadRequest(URLRequest(url: URL(string: movie.link!)!))
         }
     }
     
