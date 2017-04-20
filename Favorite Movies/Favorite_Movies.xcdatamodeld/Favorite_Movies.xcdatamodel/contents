@@ -6,12 +6,13 @@
     </entity>
     <entity name="Movie" representedClassName="Movie" syncable="YES" codeGenerationType="class">
         <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastUpdated" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="toImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="toMovie" inverseEntity="Image" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Movie" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="Movie" positionX="-63" positionY="-18" width="128" height="120"/>
         <element name="Image" positionX="-54" positionY="-9" width="128" height="75"/>
     </elements>
 </model>

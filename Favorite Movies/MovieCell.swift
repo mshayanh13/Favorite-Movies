@@ -20,5 +20,11 @@ class MovieCell: UITableViewCell {
         
         
     }
+    
+    func configureCell(movie: Movie) {
+        titleLabel.text = movie.title
+        descriptionLabel.text = movie.details
+        urlLabel.text = movie.link
+    }
 
 }
