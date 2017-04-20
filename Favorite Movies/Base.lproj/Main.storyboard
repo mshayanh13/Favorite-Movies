@@ -172,6 +172,13 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="dAB-gq-lyG"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addImageTapped:" destination="Jrj-i3-sKL" eventType="touchUpInside" id="fpV-sa-lOG"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Rl3-AJ-ZXk">
                                 <rect key="frame" x="16" y="280" width="288" height="268"/>

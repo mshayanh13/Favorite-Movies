@@ -67,6 +67,16 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFe
         }
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if let objs = controller.fetchedObjects, objs.count > 0 {
+                let movie = objs[indexPath.row]
+                context.delete(movie)
+                ad.saveContext()
+            }
+        }
+    }
+    
     func attemptFetch() {
         let fetchRequest: NSFetchRequest<Movie> = Movie.fetchRequest()
         let dateSort = NSSortDescriptor(key: "lastUpdated", ascending: true)

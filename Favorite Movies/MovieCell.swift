@@ -25,6 +25,7 @@ class MovieCell: UITableViewCell {
         titleLabel.text = movie.title
         descriptionLabel.text = movie.details
         urlLabel.text = movie.link
+        movieImage.image = movie.toImage?.image as? UIImage
     }
 
 }
